@@ -1,0 +1,3 @@
+/home/nik/Desktop/sfl/build/CMakeFiles/game.dir
+/home/nik/Desktop/sfl/build/CMakeFiles/edit_cache.dir
+/home/nik/Desktop/sfl/build/CMakeFiles/rebuild_cache.dir
