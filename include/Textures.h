@@ -5,7 +5,6 @@ namespace textures
 {
     static sf::Texture player_texture;
     static sf::Texture background_texture;        
-    static sf::Image imgPlayer;
 
     static void setBackTextures()
     {
@@ -14,9 +13,6 @@ namespace textures
 
     static void setTextures()
     {
-        imgPlayer.loadFromFile("../Assets/sprite2.jpg");
-        sf::Color color = imgPlayer.getPixel(0,0);
-        imgPlayer.createMaskFromColor(color);
-        player_texture.loadFromImage(imgPlayer);
+        player_texture.loadFromFile("../Assets/sprite2.png");
     }
 } 

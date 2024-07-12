@@ -618,6 +618,7 @@ CMakeFiles/game.dir/src/Player.cpp.o: /home/nik/Desktop/sfl/src/Player.cpp \
   /home/nik/Desktop/sfl/include/Engine/Character.h \
   /home/nik/Desktop/sfl/include/Engine/PlayerController.h \
   /home/nik/Desktop/sfl/include/Player.h \
+  /home/nik/Desktop/sfl/include/Textures.h \
   /usr/include/SFML/Config.hpp \
   /usr/include/SFML/Graphics.hpp \
   /usr/include/SFML/Graphics/BlendMode.hpp \

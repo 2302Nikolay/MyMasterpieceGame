@@ -244,4 +244,5 @@ CMakeFiles/game.dir/src/Player.cpp.o: \
  /usr/include/SFML/Graphics/Sprite.hpp \
  /usr/include/SFML/Graphics/Text.hpp \
  /usr/include/SFML/Graphics/VertexBuffer.hpp \
- /home/nik/Desktop/sfl/src/../include/Engine/PlayerController.h
+ /home/nik/Desktop/sfl/src/../include/Engine/PlayerController.h \
+ /home/nik/Desktop/sfl/src/../include/Textures.h
