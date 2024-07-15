@@ -15,9 +15,6 @@ class Player : public Character
         State               m_state;
         PlayerController*   m_controller;
         float               m_frame;
-        //static sf::Clock m_clockFrame;
-        //static float m_time;
-
     public:
         Player() = delete;
         Player(sf::Texture& texture, sf::Vector2f start_pos, float health);

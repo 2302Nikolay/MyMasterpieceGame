@@ -1,1 +1,1 @@
-/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/game.dir/main.cpp.o CMakeFiles/game.dir/src/Character.cpp.o CMakeFiles/game.dir/src/Player.cpp.o CMakeFiles/game.dir/src/PlayerController.cpp.o -o game  -lsfml-graphics -lsfml-window -lsfml-system 
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/game.dir/main.cpp.o CMakeFiles/game.dir/src/Character.cpp.o CMakeFiles/game.dir/src/Player.cpp.o CMakeFiles/game.dir/src/PlayerController.cpp.o CMakeFiles/game.dir/src/Enemy.cpp.o -o game  -lsfml-graphics -lsfml-window -lsfml-system 

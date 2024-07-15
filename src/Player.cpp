@@ -11,7 +11,6 @@ Player::Player(sf::Texture& texture, sf::Vector2f start_pos, float health)
     m_sprite.setTexture(texture); // Почему это работает, а m_sprite.setTexture(textures::player_texture); не работает???????
     //m_size = sf::Vector2f(m_sprite.getTextureRect().width, m_sprite.getTextureRect().height);
     m_size = sf::Vector2f(40.0, 40.0);
-    //std::cout << m_sprite.getTextureRect().width << ' ' << m_sprite.getTextureRect().height << '\n';
     setPlayerTexture(40, 80, 40, 40);
 }
 

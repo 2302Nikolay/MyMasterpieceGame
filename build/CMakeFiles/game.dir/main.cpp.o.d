@@ -245,4 +245,5 @@ CMakeFiles/game.dir/main.cpp.o: /home/nik/Desktop/sfl/main.cpp \
  /home/nik/Desktop/sfl/include/Engine/Constants.h \
  /home/nik/Desktop/sfl/include/Textures.h \
  /home/nik/Desktop/sfl/include/Player.h \
- /home/nik/Desktop/sfl/include/Engine/Character.h
+ /home/nik/Desktop/sfl/include/Engine/Character.h \
+ /home/nik/Desktop/sfl/include/Enemy.h

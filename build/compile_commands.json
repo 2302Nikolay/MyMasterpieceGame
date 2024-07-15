@@ -22,5 +22,11 @@
   "command": "/usr/bin/c++   -O3 -DNDEBUG -o CMakeFiles/game.dir/src/PlayerController.cpp.o -c /home/nik/Desktop/sfl/src/PlayerController.cpp",
   "file": "/home/nik/Desktop/sfl/src/PlayerController.cpp",
   "output": "CMakeFiles/game.dir/src/PlayerController.cpp.o"
+},
+{
+  "directory": "/home/nik/Desktop/sfl/build",
+  "command": "/usr/bin/c++   -O3 -DNDEBUG -o CMakeFiles/game.dir/src/Enemy.cpp.o -c /home/nik/Desktop/sfl/src/Enemy.cpp",
+  "file": "/home/nik/Desktop/sfl/src/Enemy.cpp",
+  "output": "CMakeFiles/game.dir/src/Enemy.cpp.o"
 }
 ]
