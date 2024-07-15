@@ -1,14 +1,17 @@
 #include "../include/Player.h"
 #include "../include/Engine/PlayerController.h"
 #include "../include/Textures.h"
+//#include <iostream>
 
 Player::Player(sf::Texture& texture, sf::Vector2f start_pos, float health)
 {
     m_pos = start_pos;
     m_health = health;
     m_controller = PlayerController::getPlayerController();
-    m_sprite.setTexture(texture);
-    m_size = sf::Vector2f(m_sprite.getTextureRect().width, m_sprite.getTextureRect().height);
+    m_sprite.setTexture(texture); // Почему это работает, а m_sprite.setTexture(textures::player_texture); не работает???????
+    //m_size = sf::Vector2f(m_sprite.getTextureRect().width, m_sprite.getTextureRect().height);
+    m_size = sf::Vector2f(40.0, 40.0);
+    //std::cout << m_sprite.getTextureRect().width << ' ' << m_sprite.getTextureRect().height << '\n';
     setPlayerTexture(40, 80, 40, 40);
 }
 
@@ -31,7 +34,6 @@ void Player::updatePlayerTexture(float time)
 {
     if (m_direction == Direction::UP && m_state == State::RUN)
     {
-        ///setPlayerTexture(0,0,40,40);
         m_frame += 0.001*time;
         if (m_frame > 4)
             m_frame -= 4;
@@ -39,7 +41,6 @@ void Player::updatePlayerTexture(float time)
     }
     else if (m_direction == Direction::DOWN && m_state == State::RUN)
     {
-        //setPlayerTexture(0, 80,40,40);
         m_frame += 0.001*time;
         if (m_frame > 4)
             m_frame -= 4;
@@ -47,7 +48,6 @@ void Player::updatePlayerTexture(float time)
     }
     else if (m_direction == Direction::LEFT && m_state == State::RUN)
     {
-        //setPlayerTexture(0,40,40,40);
         m_frame += 0.001*time;
         if (m_frame > 4)
             m_frame -= 4;
@@ -55,7 +55,6 @@ void Player::updatePlayerTexture(float time)
     }
     else if (m_direction == Direction::RIGHT && m_state == State::RUN)
     {
-        //setPlayerTexture(0,120,40,40);
         m_frame += 0.001*time;
         if (m_frame > 5)
             m_frame -= 4;
