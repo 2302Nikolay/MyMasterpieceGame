@@ -4,6 +4,7 @@
 #include <random>
 #include "../include/Enemy.h"
 #include "../include/Player.h"
+#include "../include/Engine/Constants.h"
 
 Enemy::Enemy(sf::Texture& texture, sf::Vector2f start_pos, float health, Player* target_player)
 {
@@ -66,7 +67,7 @@ void Enemy::moveToPlayer(sf::Vector2f player_pos, float time)
     float distance = std::sqrt(direction_to_player.x * direction_to_player.x +
                                direction_to_player.y * direction_to_player.y);
 
-    if (m_state == State::IDLE && isPlayerInView(player_pos, distance, 60 * 3.14159265 / 180))
+    if (m_state == State::IDLE && isPlayerInView(player_pos, distance, ENEMY_VIEW_ANGLE))
     {
         m_state = State::CHASING;
     }
