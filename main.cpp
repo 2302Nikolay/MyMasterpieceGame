@@ -17,7 +17,7 @@ int main() {
     Player* player = new Player(textures::player_texture, sf::Vector2f(PLAYER_START_X, PLAYER_START_Y), PLAYER_START_HP);
     std::vector<Enemy*> enemyes;
 
-    for (int i{0}; i<100; ++i)
+    for (int i{0}; i<10; ++i)
     {
         const float rx{static_cast<float>(rand())/(static_cast<float>(RAND_MAX/1200))};
         const float ry{static_cast<float>(rand())/(static_cast<float>(RAND_MAX/700))};

@@ -14,7 +14,7 @@ public:
     Enemy(sf::Texture& texture, sf::Vector2f start_pos, float health, Player* target_player);
     ~Enemy();
     void Update(float time);
-    void setEnemyTexture(int xs, int ys, int x, int y);
+    void setEnemyTexture();
     void moveToPlayer(sf::Vector2f player_pos, float time);
     void checkDistanceToPlayer(sf::Vector2f player_cord, float time);
 };

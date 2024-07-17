@@ -9,21 +9,19 @@
 Enemy::Enemy(sf::Texture& texture, sf::Vector2f start_pos, float health, Player* target_player)
 {
     m_state = State::IDLE;
+    m_direction = static_cast<Direction>(rand()%4);
     m_pos = start_pos;
     m_health = health;
     m_sprite.setTexture(texture);
     m_size = sf::Vector2f(40.0, 40.0);
     m_target_player = target_player;
-    setEnemyTexture(40, 80, 40, 40);
+    setEnemyTexture();
     m_speed = rand() % (15-5+1)+5;
+
+    std::cout << static_cast<int>(m_direction) << '\n';
 }
 
 Enemy::~Enemy(){}
-
-void Enemy::setEnemyTexture(int xs, int ys, int x, int y)
-{
-    m_sprite.setTextureRect(sf::IntRect(xs,ys,x,y));
-}
 
 void Enemy::Update(float time)
 {
@@ -31,6 +29,28 @@ void Enemy::Update(float time)
     if (m_state == State::RUN)
         moveToPlayer(m_target_player->getPosition(), time);
     m_sprite.setPosition(m_pos);
+    setEnemyTexture();
+}
+
+void Enemy::setEnemyTexture()
+{
+    if (m_direction == Direction::UP)
+    {
+        m_sprite.setTextureRect(sf::IntRect(40,0,40,40));
+    }
+    else if (m_direction == Direction::DOWN)
+    {
+        m_sprite.setTextureRect(sf::IntRect(40,80,40,40));
+    }
+    else if (m_direction == Direction::LEFT)
+    {
+        m_sprite.setTextureRect(sf::IntRect(40,40,40,40));
+    }
+    else if (m_direction == Direction::RIGHT)
+    {   
+        m_sprite.setTextureRect(sf::IntRect(40,120,40,40));
+    }
+    //m_sprite.setTextureRect(sf::IntRect(xs,ys,x,y));
 }
 
 void Enemy::moveToPlayer(sf::Vector2f player_pos, float time)
