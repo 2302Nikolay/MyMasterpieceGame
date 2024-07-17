@@ -52,6 +52,7 @@ class Character
         void setPosition(sf::Vector2f& pos);
         void setDirection(Direction direction);
         void setHealth(float health);
+        void setType(CharacterType);
 
         float getHP() const;
         sf::Vector2f getSize() const;

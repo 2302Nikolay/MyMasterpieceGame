@@ -71,3 +71,8 @@ void Character::setHealth(float health)
     if (m_type == CharacterType::player)
         m_hpBar.setFillColor(sf::Color::Green);
 }
+
+void Character::setType(CharacterType type)
+{
+    m_type = type;
+}

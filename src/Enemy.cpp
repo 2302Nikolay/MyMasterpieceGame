@@ -13,7 +13,7 @@ Enemy::Enemy(sf::Texture& texture, sf::Vector2f start_pos, float health, Player*
     m_target_player = target_player;
     m_direction = static_cast<Direction>(rand() % 4);
     m_state = State::IDLE;
-    m_type = CharacterType::enemy;
+    m_type = CharacterType::neutral;
     m_sprite.setTexture(texture);
     m_size = sf::Vector2f(40.0f, 40.0f);
     m_speed = rand() % (15 - 5 + 1) + 5;
@@ -28,6 +28,8 @@ void Enemy::Update(float time)
     m_sprite.setPosition(m_pos);
     m_sprite.setColor(sf::Color::White);
     setEnemyTexture(time);
+
+    setHealth(m_health);
     m_hpBar.setPosition(m_pos.x, m_pos.y - 10);
 }
 
@@ -74,6 +76,7 @@ void Enemy::moveToPlayer(sf::Vector2f player_pos, float time)
     if (m_state == State::IDLE && isPlayerInView(player_pos, distance, ENEMY_VIEW_ANGLE))
     {
         m_state = State::CHASING;
+        m_type = CharacterType::enemy;
     }
 
     if (m_state == State::CHASING)
