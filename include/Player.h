@@ -7,7 +7,6 @@ class Player : public Character
 {
     private:
         PlayerController*   m_controller;
-        float               m_frame;
     public:
         Player() = delete;
         Player(sf::Texture& texture, sf::Vector2f start_pos, float health);

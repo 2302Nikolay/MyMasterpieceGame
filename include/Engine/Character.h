@@ -13,12 +13,14 @@ enum class Direction
 enum class State
 {
     IDLE,
-    RUN
+    RUN,
+    CHASING
 };
 
 class Character
 {
     protected:
+        float           m_frame;
         State           m_state;
         float           m_health;
         float           m_speed;
