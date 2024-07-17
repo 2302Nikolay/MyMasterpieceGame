@@ -7,7 +7,7 @@
 #include "include/Enemy.h"
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Title");
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "GGAME");
 
     textures::setTextures();
     textures::setBackTextures();
@@ -15,7 +15,14 @@ int main() {
     srand(static_cast<unsigned>(time(0)));
 
     Player* player = new Player(textures::player_texture, sf::Vector2f(PLAYER_START_X, PLAYER_START_Y), PLAYER_START_HP);
-    Enemy* enemy = new Enemy(textures::player_texture, sf::Vector2f(2.0, 3.0), PLAYER_START_HP, player);
+    std::vector<Enemy*> enemyes;
+
+    for (int i{0}; i<100; ++i)
+    {
+        const float rx{static_cast<float>(rand())/(static_cast<float>(RAND_MAX/1200))};
+        const float ry{static_cast<float>(rand())/(static_cast<float>(RAND_MAX/700))};
+        enemyes.push_back(new Enemy(textures::player_texture, sf::Vector2f(rx, ry), PLAYER_START_HP, player));
+    }
 
 
     sf::RectangleShape background = sf::RectangleShape(sf::Vector2f(1280, 720));
@@ -37,19 +44,22 @@ int main() {
             }
         }
 
-        player->Update(time);
-        enemy->Update(time);
-
-        //window.clear(sf::Color::White);
-
         window.draw(background);
         window.draw(player->getSprite());
-        window.draw(enemy->getSprite());
+        for (auto en : enemyes)
+        {
+            en->Update(time);
+            window.draw(en->getSprite());
+        }
+        player->Update(time);
 
         window.display();
     }
 
     delete player;
-    delete enemy;
+    for (auto en : enemyes) // так работает???
+    {
+        delete en;
+    }
     return 0;
 }

@@ -3,16 +3,9 @@
 
 class PlayerController;
 
-enum class State
-{
-    IDLE,
-    RUN
-};
-
 class Player : public Character
 {
     private:
-        State               m_state;
         PlayerController*   m_controller;
         float               m_frame;
     public:

@@ -10,9 +10,16 @@ enum class Direction
     UP
 };
 
+enum class State
+{
+    IDLE,
+    RUN
+};
+
 class Character
 {
     protected:
+        State           m_state;
         float           m_health;
         float           m_speed;
         sf::Vector2f    m_size;
