@@ -1,27 +1,40 @@
+#include <cmath>
+#include <iostream>
+
 #include "../include/Player.h"
 #include "../include/Engine/PlayerController.h"
 #include "../include/Textures.h"
-//#include <iostream>
+#include "../include/Enemy.h"
 
 Player::Player(sf::Texture& texture, sf::Vector2f start_pos, float health)
 {
     m_pos = start_pos;
-    m_health = health;
+    m_type = CharacterType::player;
     m_controller = PlayerController::getPlayerController();
     m_sprite.setTexture(texture); // Почему это работает, а m_sprite.setTexture(textures::player_texture); не работает???????
     //m_size = sf::Vector2f(m_sprite.getTextureRect().width, m_sprite.getTextureRect().height);
     m_size = sf::Vector2f(40.0f, 40.0f);
     setPlayerTexture(40, 80, 40, 40);
+    setHealth(health);
 }
 
 Player::~Player(){}
 
 void Player::Update(float time)
 {
+    if(m_is_damage && m_damage_clock.getElapsedTime().asSeconds() > 0.05f)
+    {
+        m_sprite.setColor(sf::Color::White);
+        m_is_damage = false;
+    }
+    
     m_state = State::IDLE;
     m_controller -> controllPlayer(this, time);
     m_sprite.setPosition(m_pos);
     updatePlayerTexture(time);
+
+    setHealth(m_health);
+    m_hpBar.setPosition(m_pos.x, m_pos.y - 10);
 }
 
 void Player::setState(State state)
@@ -59,15 +72,26 @@ void Player::updatePlayerTexture(float time)
             m_frame -= 4;
         m_sprite.setTextureRect(sf::IntRect(40 * int(m_frame),120,40,40));
     }
-    else if (m_state == State::IDLE)
-    {
-        //setPlayerTexture(0,80,40,40);
-        //m_sprite.setTextureRect(sf::IntRect(0,80,40,40));
-        //m_direction = Direction::UP;
-    }
 }
 
 void Player::setPlayerTexture(int xs, int ys, int x, int y)
 {
     m_sprite.setTextureRect(sf::IntRect(xs,ys,x,y));
+}
+
+void Player::checkColision(std::vector<Enemy*> enemies)
+{
+    sf::Vector2f playerPos = this->getPosition();
+    for (auto& enemy : enemies)
+    {
+        sf::Vector2f enemyPos = enemy->getPosition();
+        float distance = std::sqrt((playerPos.x - enemyPos.x) * (playerPos.x - enemyPos.x) +
+                                   (playerPos.y - enemyPos.y) * (playerPos.y - enemyPos.y));
+        if (distance < 40 && m_health>0)
+        {
+            float damage = enemy->takeDamage(); // Предположим, что у моба есть метод для получения урона
+            this->getDamage(damage);
+            std::cout << "hp: " << m_health << '\n';
+        }
+    }
 }

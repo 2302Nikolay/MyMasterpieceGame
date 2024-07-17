@@ -9,13 +9,15 @@
 Enemy::Enemy(sf::Texture& texture, sf::Vector2f start_pos, float health, Player* target_player)
 {
     m_pos = start_pos;
-    m_health = health;
+    m_damage = 0.05;
     m_target_player = target_player;
     m_direction = static_cast<Direction>(rand() % 4);
     m_state = State::IDLE;
+    m_type = CharacterType::enemy;
     m_sprite.setTexture(texture);
     m_size = sf::Vector2f(40.0f, 40.0f);
     m_speed = rand() % (15 - 5 + 1) + 5;
+    setHealth(health);
 }
 
 Enemy::~Enemy() {}
@@ -24,7 +26,9 @@ void Enemy::Update(float time)
 {
     moveToPlayer(m_target_player->getPosition(), time);
     m_sprite.setPosition(m_pos);
+    m_sprite.setColor(sf::Color::White);
     setEnemyTexture(time);
+    m_hpBar.setPosition(m_pos.x, m_pos.y - 10);
 }
 
 void Enemy::setEnemyTexture(float time)

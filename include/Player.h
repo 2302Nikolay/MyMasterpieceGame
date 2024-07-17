@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine/Character.h"
+#include "./Enemy.h"
 
 class PlayerController;
 
@@ -19,4 +20,6 @@ class Player : public Character
         void updatePlayerTexture(float time);
 
         void setPlayerTexture(int xs, int ys, int x, int y);
+
+        void checkColision(std::vector<Enemy*> enemies);
 };

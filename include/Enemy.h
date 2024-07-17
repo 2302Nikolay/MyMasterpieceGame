@@ -3,7 +3,8 @@
 #include <vector>
 
 #include "./Engine/Character.h"
-#include "./Player.h"
+
+class Player;
 
 class Enemy : public Character
 {
@@ -13,7 +14,7 @@ private:
 public:
     Enemy(sf::Texture& texture, sf::Vector2f start_pos, float health, Player* target_player);
     ~Enemy();
-    void Update(float time);
+    void Update(float time) override;
     void setEnemyTexture(float time);
     void moveToPlayer(sf::Vector2f player_pos, float time);
     bool isPlayerInView(sf::Vector2f player_pos, float distance, float view_angle);

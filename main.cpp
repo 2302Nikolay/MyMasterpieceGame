@@ -50,8 +50,11 @@ int main() {
         {
             en->Update(time);
             window.draw(en->getSprite());
+            window.draw(en->getHpBar());
         }
+        player->checkColision(enemyes);
         player->Update(time);
+        window.draw(player->getHpBar());
 
         window.display();
     }

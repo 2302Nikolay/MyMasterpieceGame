@@ -28,29 +28,34 @@ void PlayerController::controllPlayer(Player* player, float time)
     State newState = State::IDLE;
     Direction newDirection = player->getDirection();
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) 
+    {
         movement.x -= PLAYER_SPEED * time;
         newDirection = Direction::LEFT;
         newState = State::RUN;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) 
+    {
         movement.x += PLAYER_SPEED * time;
         newDirection = Direction::RIGHT;
         newState = State::RUN;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) 
+    {
         movement.y -= PLAYER_SPEED * time;
         newDirection = Direction::UP;
         newState = State::RUN;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) 
+    {
         movement.y += PLAYER_SPEED * time;
         newDirection = Direction::DOWN;
         newState = State::RUN;
     }
 
     // Нормализация при движении по диагонали
-    if (movement.x != 0.0f && movement.y != 0.0f) {
+    if (movement.x != 0.0f && movement.y != 0.0f) 
+    {
         float length = std::sqrt(movement.x * movement.x + movement.y * movement.y);
         movement /= length;
         movement *= PLAYER_SPEED * time;
