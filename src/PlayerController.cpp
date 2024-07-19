@@ -3,6 +3,7 @@
 #include "../include/Player.h"
 #include "../include/Engine/Constants.h"
 #include "../include/Textures.h"
+#include "../include/Engine/Constants.h"
 
 PlayerController* PlayerController::controller = nullptr;
 
@@ -62,6 +63,13 @@ void PlayerController::controllPlayer(Player* player, float time)
     }
 
     updated_pos += movement;
+
+    // Ограничение по границам карты
+    if (updated_pos.x < 0) updated_pos.x = 0;
+    if (updated_pos.x > WINDOW_WIDTH - player->getSize().x) updated_pos.x = WINDOW_WIDTH - player->getSize().x;
+    if (updated_pos.y < 0) updated_pos.y = 0;
+    if (updated_pos.y > 720 - player->getSize().y) updated_pos.y = WINDOW_HEIGHT - player->getSize().y;
+
 
     player->setPosition(updated_pos);
     player->setState(newState);

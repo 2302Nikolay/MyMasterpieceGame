@@ -13,9 +13,7 @@ Player::Player(sf::Texture& texture, sf::Vector2f start_pos, float health)
     m_type = CharacterType::player;
     m_controller = PlayerController::getPlayerController();
     m_sprite.setTexture(texture); // Почему это работает, а m_sprite.setTexture(textures::player_texture); не работает???????
-    //m_size = sf::Vector2f(m_sprite.getTextureRect().width, m_sprite.getTextureRect().height);
     m_size = sf::Vector2f(40.0f, 40.0f);
-    m_player_camera = sf::View(sf::FloatRect(0.0f, 0.0f, WINDOW_WIDTH/2, WINDOW_HEIGHT/2));
     setPlayerTexture(40, 80, 40, 40);
     setHealth(health);
 }
@@ -34,9 +32,6 @@ void Player::Update(float time)
     m_controller -> controllPlayer(this, time);
     m_sprite.setPosition(m_pos);
     updatePlayerTexture(time);
-
-    m_player_camera.setCenter(m_pos);
-    m_player_camera.setViewport(sf::FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
     setHealth(m_health);
     m_hpBar.setPosition(m_pos.x, m_pos.y - 10);
 }

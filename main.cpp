@@ -5,6 +5,7 @@
 #include "include/Textures.h"
 #include "include/Player.h"
 #include "include/Enemy.h"
+#include "include/Camera.h"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "GGAME");
@@ -15,8 +16,9 @@ int main() {
     srand(static_cast<unsigned>(time(0)));
 
     Player* player = new Player(textures::player_texture, sf::Vector2f(PLAYER_START_X, PLAYER_START_Y), PLAYER_START_HP);
-    std::vector<Enemy*> enemyes;
+    Camera playerCamera = Camera(player);
 
+    std::vector<Enemy*> enemyes;
     for (int i{0}; i<10; ++i)
     {
         const float rx{static_cast<float>(rand())/(static_cast<float>(RAND_MAX/1200))};
@@ -53,8 +55,9 @@ int main() {
             window.draw(en->getHpBar());
         }
         player->Update(time);
+        playerCamera.updateCamera();
         window.draw(player->getHpBar());
-        window.setView(player->getPlayerCamera());
+        window.setView(playerCamera.getCamera());
 
         window.display();
     }
