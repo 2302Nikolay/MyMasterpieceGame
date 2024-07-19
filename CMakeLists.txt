@@ -9,6 +9,7 @@ add_executable(game
     src/PlayerController.cpp
     src/Enemy.cpp
     src/Camera.cpp
+    src/Menu.cpp
     )
 
 target_link_libraries(game PRIVATE sfml-graphics)

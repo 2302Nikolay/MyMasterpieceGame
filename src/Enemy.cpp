@@ -103,7 +103,7 @@ void Enemy::updateDirection(const sf::Vector2f& direction_to_player)
 
 bool Enemy::isPlayerInView(sf::Vector2f player_pos, float distance, float view_angle)
 {
-    if (distance > 100) return false;
+    if (distance > m_distance_view || (m_type == CharacterType::friendly)) return false;
 
     sf::Vector2f direction_vector;
     switch (m_direction)
@@ -143,7 +143,7 @@ void Enemy::checkColision(Player* player)
     sf::Vector2f playerPos = player->getPosition();
     float distance = std::sqrt((m_pos.x - playerPos.x) * (m_pos.x - playerPos.x) +
                                 (m_pos.y - playerPos.y) * (m_pos.y - playerPos.y));
-    if (isPlayerInView(player->getPosition(), distance, ENEMY_VIEW_ANGLE) && distance < 40 && player->getHP()>0)
+    if (isPlayerInView(player->getPosition(), distance, ENEMY_VIEW_ANGLE) && distance < 20 && player->getHP()>0)
     {
         player->getDamage(m_damage);
     }

@@ -10,7 +10,8 @@ class Enemy : public Character
 {
 private:
     Player* m_target_player;
-    int m_speed;
+    int     m_speed;
+    int     m_distance_view = 100;
 public:
     Enemy(sf::Texture& texture, sf::Vector2f start_pos, float health, Player* target_player);
     ~Enemy();

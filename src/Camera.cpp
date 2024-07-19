@@ -18,12 +18,12 @@ void Camera::updateCamera()
 
     if (camera_center.x < WINDOW_WIDTH / 4)
         camera_center.x = WINDOW_WIDTH / 4;
-    if (camera_center.x > 1280 - WINDOW_WIDTH / 4)
-        camera_center.x = 1280 - WINDOW_WIDTH / 4;
+    if (camera_center.x > WINDOW_WIDTH - WINDOW_WIDTH / 4)
+        camera_center.x = WINDOW_WIDTH - WINDOW_WIDTH / 4;
     if (camera_center.y < WINDOW_HEIGHT / 4)
         camera_center.y = WINDOW_HEIGHT / 4;
-    if (camera_center.y > 720 - WINDOW_HEIGHT / 4)
-        camera_center.y = 720 - WINDOW_HEIGHT / 4;
+    if (camera_center.y > WINDOW_HEIGHT - WINDOW_HEIGHT / 4)
+        camera_center.y = WINDOW_HEIGHT - WINDOW_HEIGHT / 4;
     m_camera.setCenter(camera_center);
     m_camera.setViewport(sf::FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
 }

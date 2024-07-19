@@ -4,15 +4,25 @@
 namespace textures
 {
     static sf::Texture player_texture;
-    static sf::Texture background_texture;        
+    static sf::Texture background_texture;
+    static sf::Texture background_menu_texture;       
 
+    static void setBackMenuTextures()
+    {
+        if (!background_menu_texture.loadFromFile("../Assets/main_menu.png"))
+            exit(1); // и тут...
+    }
+    
     static void setBackTextures()
     {
-        background_texture.loadFromFile("../Assets/grass.png");
+        if (!background_texture.loadFromFile("../Assets/grass.png"))
+            exit(1);// тут добавить обработку исключений
     }
 
     static void setTextures()
     {
-        player_texture.loadFromFile("../Assets/sprite2.png");
+        if (!player_texture.loadFromFile("../Assets/sprite2.png"))
+            exit(1);// и тут 
     }
+
 } 
