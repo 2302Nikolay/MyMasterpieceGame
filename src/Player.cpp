@@ -79,19 +79,14 @@ void Player::setPlayerTexture(int xs, int ys, int x, int y)
     m_sprite.setTextureRect(sf::IntRect(xs,ys,x,y));
 }
 
-void Player::checkColision(std::vector<Enemy*> enemies)
+/* void Player::checkColision(Enemy* enemy)
 {
-    sf::Vector2f playerPos = this->getPosition();
-    for (auto& enemy : enemies)
+    sf::Vector2f enemyPos = enemy->getPosition();
+    float distance = std::sqrt((m_pos.x - enemyPos.x) * (m_pos.x - enemyPos.x) +
+                                (m_pos.y - enemyPos.y) * (m_pos.y - enemyPos.y));
+    if (distance < 40 && m_health>0)
     {
-        sf::Vector2f enemyPos = enemy->getPosition();
-        float distance = std::sqrt((playerPos.x - enemyPos.x) * (playerPos.x - enemyPos.x) +
-                                   (playerPos.y - enemyPos.y) * (playerPos.y - enemyPos.y));
-        if (distance < 40 && m_health>0)
-        {
-            float damage = enemy->takeDamage(); // Предположим, что у моба есть метод для получения урона
-            this->getDamage(damage);
-            std::cout << "hp: " << m_health << '\n';
-        }
+        this->getDamage(enemy->takeDamage());
+        std::cout << "hp: " << m_health << '\n';
     }
-}
+} */

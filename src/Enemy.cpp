@@ -16,7 +16,7 @@ Enemy::Enemy(sf::Texture& texture, sf::Vector2f start_pos, float health, Player*
     m_type = CharacterType::neutral;
     m_sprite.setTexture(texture);
     m_size = sf::Vector2f(40.0f, 40.0f);
-    m_speed = rand() % (15 - 5 + 1) + 5;
+    m_speed = rand() % (10 - 5 + 1) + 5;
     setHealth(health);
 }
 
@@ -29,6 +29,7 @@ void Enemy::Update(float time)
     m_sprite.setColor(sf::Color::White);
     setEnemyTexture(time);
 
+    checkColision(m_target_player);
     setHealth(m_health);
     m_hpBar.setPosition(m_pos.x, m_pos.y - 10);
 }
@@ -135,4 +136,15 @@ bool Enemy::isPlayerInView(sf::Vector2f player_pos, float distance, float view_a
     float half_view_angle = view_angle / 2.0f;
 
     return angle <= half_view_angle;
+}
+
+void Enemy::checkColision(Player* player)
+{
+    sf::Vector2f playerPos = player->getPosition();
+    float distance = std::sqrt((m_pos.x - playerPos.x) * (m_pos.x - playerPos.x) +
+                                (m_pos.y - playerPos.y) * (m_pos.y - playerPos.y));
+    if (isPlayerInView(player->getPosition(), distance, ENEMY_VIEW_ANGLE) && distance < 40 && player->getHP()>0)
+    {
+        player->getDamage(m_damage);
+    }
 }

@@ -21,5 +21,5 @@ class Player : public Character
 
         void setPlayerTexture(int xs, int ys, int x, int y);
 
-        void checkColision(std::vector<Enemy*> enemies);
+        //void checkColision(Enemy* enemy);
 };

@@ -19,4 +19,5 @@ public:
     void moveToPlayer(sf::Vector2f player_pos, float time);
     bool isPlayerInView(sf::Vector2f player_pos, float distance, float view_angle);
     void updateDirection(const sf::Vector2f& direction_to_player);
+    void checkColision(Player* player);
 };
