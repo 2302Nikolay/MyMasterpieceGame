@@ -54,6 +54,7 @@ int main() {
         }
         player->Update(time);
         window.draw(player->getHpBar());
+        window.setView(player->getPlayerCamera());
 
         window.display();
     }

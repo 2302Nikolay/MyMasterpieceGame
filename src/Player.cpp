@@ -5,6 +5,7 @@
 #include "../include/Engine/PlayerController.h"
 #include "../include/Textures.h"
 #include "../include/Enemy.h"
+#include "../include/Engine/Constants.h"
 
 Player::Player(sf::Texture& texture, sf::Vector2f start_pos, float health)
 {
@@ -14,6 +15,7 @@ Player::Player(sf::Texture& texture, sf::Vector2f start_pos, float health)
     m_sprite.setTexture(texture); // Почему это работает, а m_sprite.setTexture(textures::player_texture); не работает???????
     //m_size = sf::Vector2f(m_sprite.getTextureRect().width, m_sprite.getTextureRect().height);
     m_size = sf::Vector2f(40.0f, 40.0f);
+    m_player_camera = sf::View(sf::FloatRect(0.0f, 0.0f, WINDOW_WIDTH/2, WINDOW_HEIGHT/2));
     setPlayerTexture(40, 80, 40, 40);
     setHealth(health);
 }
@@ -33,6 +35,8 @@ void Player::Update(float time)
     m_sprite.setPosition(m_pos);
     updatePlayerTexture(time);
 
+    m_player_camera.setCenter(m_pos);
+    m_player_camera.setViewport(sf::FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
     setHealth(m_health);
     m_hpBar.setPosition(m_pos.x, m_pos.y - 10);
 }
@@ -79,14 +83,7 @@ void Player::setPlayerTexture(int xs, int ys, int x, int y)
     m_sprite.setTextureRect(sf::IntRect(xs,ys,x,y));
 }
 
-/* void Player::checkColision(Enemy* enemy)
+sf::View& Player::getPlayerCamera()
 {
-    sf::Vector2f enemyPos = enemy->getPosition();
-    float distance = std::sqrt((m_pos.x - enemyPos.x) * (m_pos.x - enemyPos.x) +
-                                (m_pos.y - enemyPos.y) * (m_pos.y - enemyPos.y));
-    if (distance < 40 && m_health>0)
-    {
-        this->getDamage(enemy->takeDamage());
-        std::cout << "hp: " << m_health << '\n';
-    }
-} */
+    return m_player_camera;
+}

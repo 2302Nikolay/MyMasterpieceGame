@@ -8,6 +8,7 @@ class Player : public Character
 {
     private:
         PlayerController*   m_controller;
+        sf::View           m_player_camera;
     public:
         Player() = delete;
         Player(sf::Texture& texture, sf::Vector2f start_pos, float health);
@@ -21,5 +22,5 @@ class Player : public Character
 
         void setPlayerTexture(int xs, int ys, int x, int y);
 
-        //void checkColision(Enemy* enemy);
+        sf::View& getPlayerCamera();
 };
