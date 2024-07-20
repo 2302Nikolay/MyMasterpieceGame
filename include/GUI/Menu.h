@@ -2,16 +2,20 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <vector>
 
 class Menu
 {	
 public:
     sf::RenderWindow&           m_window;
+/*     
     sf::Text                    m_text_label;
     sf::Text                    m_text_play;
     sf::Text                    m_text_options;
     sf::Text                    m_text_help;
-    sf::Text                    m_text_about;
+    sf::Text                    m_text_about; */
+
+    std::vector<sf::Text>       m_menu_items;
     sf::Font                    m_font;
 public:
     Menu(sf::RenderWindow& window, sf::Font& font);

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <stdexcept>
 
 namespace textures
 {
@@ -10,19 +11,19 @@ namespace textures
     static void setBackMenuTextures()
     {
         if (!background_menu_texture.loadFromFile("../Assets/main_menu.png"))
-            exit(1); // и тут...
+            throw std::runtime_error("Ошибка загрузки ../Assets/main_menu.png");
     }
     
     static void setBackTextures()
     {
         if (!background_texture.loadFromFile("../Assets/grass.png"))
-            exit(1);// тут добавить обработку исключений
+            throw std::runtime_error("Ошибка загрузки ../Assets/grass.png");
     }
 
     static void setTextures()
     {
         if (!player_texture.loadFromFile("../Assets/sprite2.png"))
-            exit(1);// и тут 
+            throw std::runtime_error("Ошибка загрузки ../Assets/sprite2.png"); 
     }
 
 } 

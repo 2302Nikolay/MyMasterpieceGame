@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
+#include <exception>
 
 namespace fonts
 {
@@ -10,6 +10,6 @@ namespace fonts
     static void loadFont()
     {
         if (!fontVideoType.loadFromFile("../Assets/fonts/videotype.otf"))
-            std::cout << "loadFontError!!! << '\n"; // добавить исключение 
+            throw std::runtime_error("Ошибка загрузки шрифта ../Assets/fonts/videotype.otf");
     }
 }

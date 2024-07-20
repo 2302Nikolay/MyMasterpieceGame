@@ -4,10 +4,9 @@ Character::~Character(){}
 
 void Character::getDamage(float damage)
 {
-    //m_sprite.setColor(sf::Color::Red);
     m_health -= damage;
-    m_sprite.setColor(sf::Color::Red); // Подсвечиваем спрайт красным
-    m_damage_clock.restart(); // Перезапускаем часы
+    m_sprite.setColor(sf::Color::Red); 
+    m_damage_clock.restart();
     m_is_damage = true;
 }
 
@@ -58,18 +57,25 @@ sf::RectangleShape& Character::getHpBar()
 void Character::setHealth(float health)
 {
     m_health = health;
-    float healthPercentage = m_health / 100.0f; // Предполагается, что максимальное здоровье = 100
+    float healthPercentage = m_health / 100.0f;
     m_hpBar.setSize(sf::Vector2f(40.0f * healthPercentage, 5.0f));
     m_hpBar.setPosition(m_pos.x, m_pos.y - 10);
-    //m_hpBar.setFillColor(healthPercentage > 0.5f ? sf::Color::Green : sf::Color::Red);
-    if (m_type == CharacterType::friendly)
+
+    switch (m_type)
+    {
+    case CharacterType::friendly:
         m_hpBar.setFillColor(sf::Color::Cyan);
-    if (m_type == CharacterType::enemy)
+        break;
+    case CharacterType::enemy:
         m_hpBar.setFillColor(sf::Color::Red);
-    if (m_type == CharacterType::neutral)
+        break;
+    case CharacterType::neutral:
         m_hpBar.setFillColor(sf::Color::Yellow);
-    if (m_type == CharacterType::player)
+        break;
+    case CharacterType::player:
         m_hpBar.setFillColor(sf::Color::Green);
+        break;
+    }
 }
 
 void Character::setType(CharacterType type)

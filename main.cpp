@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
+#include <iostream>
 
 #include "include/Engine/Constants.h"
 #include "include/Textures.h"
@@ -11,7 +12,7 @@
 
 int startGame()
 {
-    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Level 1.test", sf::Style::Fullscreen);
+    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Level 1.test");
 
     textures::setTextures();
     textures::setBackTextures();
@@ -50,6 +51,7 @@ int startGame()
             }
         }
 
+        window.clear();
         window.draw(background);
         window.draw(player->getSprite());
         for (auto en : enemyes)
@@ -73,19 +75,6 @@ int startGame()
     }
     return 0;
 }
-
-// функция настройки текста
-void InitText(sf::Text& mtext, float xpos, float ypos, sf::String str, int size_font = 60, 
-    sf::Color menu_text_color = sf::Color::White, int bord = 0, sf::Color border_color = sf::Color::Black)
-{
-    mtext.setCharacterSize(size_font);
-    mtext.setPosition(xpos, ypos);
-    mtext.setString(str);
-    mtext.setFillColor(menu_text_color);
-    mtext.setOutlineThickness(bord);
-    mtext.setOutlineColor(border_color);
-}
-
 
 int mainMenu()
 {
@@ -113,9 +102,13 @@ int mainMenu()
             int handl = menu.handleMouseClick(event);
             switch (handl)
             {
-            case 0 : startGame();
+            case 1 : 
+            {
+                window.close();
+                startGame();
+            };
                 break;
-            case 1 : std::cout << "options";
+            case 2 : std::cout << "options";
             default:
                 break;
             }
