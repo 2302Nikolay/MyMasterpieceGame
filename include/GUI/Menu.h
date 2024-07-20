@@ -8,17 +8,11 @@ class Menu
 {	
 public:
     sf::RenderWindow&           m_window;
-/*     
-    sf::Text                    m_text_label;
-    sf::Text                    m_text_play;
-    sf::Text                    m_text_options;
-    sf::Text                    m_text_help;
-    sf::Text                    m_text_about; */
-
-    std::vector<sf::Text>       m_menu_items;
+    std::vector<sf::String>     m_name_menu_items;
+    std::vector<sf::Text>*      m_menu_items;
     sf::Font                    m_font;
 public:
-    Menu(sf::RenderWindow& window, sf::Font& font);
+    Menu(sf::RenderWindow& window, std::vector<std::string> element_names, sf::Font& font);
     ~Menu();
     void draw();
     void InitText(sf::Text& text, float xpos, float ypos, sf::String str, int size_font=150, 
