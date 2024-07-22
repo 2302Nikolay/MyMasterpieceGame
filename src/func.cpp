@@ -9,6 +9,7 @@
 #include "../include/Camera.h"
 #include "../include/GUI/Fonts.h"
 #include "../include/GUI/Menu.h"
+#include "../include/GUI/Minimap.h"
 
 int startGame()
 {
@@ -16,6 +17,7 @@ int startGame()
 
     textures::setTextures();
     textures::setBackTextures();
+    textures::setGoblinTexture();
 
     srand(static_cast<unsigned>(time(0)));
 
@@ -23,13 +25,14 @@ int startGame()
     Camera playerCamera = Camera(player);
 
     std::vector<Enemy*> enemyes;
-    for (int i{0}; i<10; ++i)
+    for (size_t i{0}; i<10; ++i)
     {
         float rx{static_cast<float>(rand())/(static_cast<float>(RAND_MAX/1200))};
         float ry{static_cast<float>(rand())/(static_cast<float>(RAND_MAX/700))};
-        enemyes.push_back(new Enemy(textures::player_texture, sf::Vector2f(rx, ry), PLAYER_START_HP, player));
+        enemyes.push_back(new Enemy(textures::goblin_texture, sf::Vector2f(rx, ry), PLAYER_START_HP, player));
     }
 
+    MiniMap* miniMap = new MiniMap(player,playerCamera, enemyes);
 
     sf::RectangleShape background = sf::RectangleShape(sf::Vector2f(1280, 720));
     background.setTexture(&textures::background_texture);
@@ -54,6 +57,7 @@ int startGame()
         window.clear();
         window.draw(background);
         window.draw(player->getSprite());
+        
         for (auto en : enemyes)
         {
             en->Update(time);
@@ -64,6 +68,7 @@ int startGame()
         playerCamera.updateCamera();
         window.draw(player->getHpBar());
         window.setView(playerCamera.getCamera());
+        miniMap->updateMiniMap(window);
 
         window.display();
     }

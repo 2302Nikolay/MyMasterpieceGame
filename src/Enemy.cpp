@@ -11,13 +11,14 @@ Enemy::Enemy(sf::Texture& texture, sf::Vector2f start_pos, float health, Player*
     m_pos = start_pos;
     m_damage = 0.05;
     m_target_player = target_player;
+    m_size = sf::Vector2f(20.0f, 20.0f);
     m_direction = static_cast<Direction>(rand() % 4);
     m_state = State::IDLE;
     m_type = CharacterType::neutral;
     m_sprite.setTexture(texture);
-    m_size = sf::Vector2f(40.0f, 40.0f);
-    m_speed = rand() % (10 - 5 + 1) + 5;
+    m_speed = rand() % (10 - 7 + 1) + 7;
     setHealth(health);
+    m_sprite.setScale(0.6,0.6);
 }
 
 Enemy::~Enemy() {}
@@ -31,7 +32,7 @@ void Enemy::Update(float time)
 
     checkColision(m_target_player);
     setHealth(m_health);
-    m_hpBar.setPosition(m_pos.x, m_pos.y - 10);
+    m_hpBar.setPosition(m_pos.x + m_size.x/2, m_pos.y);
 }
 
 void Enemy::setEnemyTexture(float time)
@@ -42,29 +43,29 @@ void Enemy::setEnemyTexture(float time)
     case Direction::UP:
         direction_offset_y = 0;
         break;
-    case Direction::DOWN:
-        direction_offset_y = 80;
-        break;
     case Direction::LEFT:
-        direction_offset_y = 40;
+        direction_offset_y = 100;
+        break;
+    case Direction::DOWN:
+        direction_offset_y = 200;
         break;
     case Direction::RIGHT:
-        direction_offset_y = 120;
+        direction_offset_y = 300;
         break;
     }
 
     if (m_state == State::CHASING)
     {
-        m_frame += 0.001f * time;
-        if (m_frame >= 4)
-            m_frame -= 4;
+        m_frame += 0.001f * (time*m_speed/2);
+        if (m_frame >= 6)
+            m_frame -= 6;
 
-        int frame_index = static_cast<int>(m_frame) * 40;
-        m_sprite.setTextureRect(sf::IntRect(frame_index, direction_offset_y, 40, 40));
+        int frame_index = static_cast<int>(m_frame) * 100;
+        m_sprite.setTextureRect(sf::IntRect(frame_index, direction_offset_y, 100, 100));
     }
     else if (m_state == State::IDLE)
     {
-        m_sprite.setTextureRect(sf::IntRect(40, direction_offset_y, 40, 40));
+        m_sprite.setTextureRect(sf::IntRect(100, direction_offset_y, 100, 100));
     }
 }
 

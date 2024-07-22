@@ -5,6 +5,7 @@
 namespace textures
 {
     static sf::Texture player_texture;
+    static sf::Texture goblin_texture;
     static sf::Texture background_texture;
     static sf::Texture background_menu_texture;       
 
@@ -24,6 +25,12 @@ namespace textures
     {
         if (!player_texture.loadFromFile("../Assets/sprite2.png"))
             throw std::runtime_error("Ошибка загрузки ../Assets/sprite2.png"); 
+    }
+
+    static void setGoblinTexture()
+    {
+        if(!goblin_texture.loadFromFile("../Assets/goblin-sprite.png"))
+            throw std::runtime_error("Ошибка загрузки ../Assets/goblin-sprite.png");
     }
 
 } 

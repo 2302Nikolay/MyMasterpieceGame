@@ -10,6 +10,8 @@ class Camera
     public:
         Camera(Player* player);
         sf::View& getCamera();
+        sf::Vector2f getPosition() const;
+        sf::Vector2f getSize() const;
 
         void updateCamera();
 };

@@ -12,6 +12,7 @@ add_executable(game
     src/Enemy.cpp
     src/Camera.cpp
     src/Menu.cpp
+    src/Minimap.cpp
     src/func.cpp
     )
 

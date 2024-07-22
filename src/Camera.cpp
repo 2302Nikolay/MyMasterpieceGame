@@ -21,3 +21,13 @@ void Camera::updateCamera()
     m_camera.setCenter(camera_center);
     m_camera.setViewport(sf::FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
 }
+
+sf::Vector2f Camera::getPosition() const
+{
+    return m_camera.getCenter();
+}
+
+sf::Vector2f Camera::getSize() const
+{
+    return m_camera.getSize();
+}

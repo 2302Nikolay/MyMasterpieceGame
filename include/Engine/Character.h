@@ -60,4 +60,5 @@ class Character
         sf::Sprite getSprite() const;
         Direction getDirection() const;
         sf::RectangleShape& getHpBar();
+        CharacterType getType() const;
 };

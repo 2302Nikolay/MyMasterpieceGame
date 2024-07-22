@@ -5,7 +5,7 @@ Character::~Character(){}
 void Character::getDamage(float damage)
 {
     m_health -= damage;
-    m_sprite.setColor(sf::Color::Red); 
+    m_sprite.setColor(sf::Color::Red);
     m_damage_clock.restart();
     m_is_damage = true;
 }
@@ -54,6 +54,12 @@ sf::RectangleShape& Character::getHpBar()
 {
     return m_hpBar;
 }
+
+CharacterType Character::getType() const
+{
+    return m_type;
+}
+
 void Character::setHealth(float health)
 {
     m_health = health;
