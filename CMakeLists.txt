@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(game LANGUAGES CXX)
 
-set (CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 20)
 
 add_executable(game 
     main.cpp 
@@ -14,8 +14,10 @@ add_executable(game
     src/Menu.cpp
     src/Minimap.cpp
     src/func.cpp
-    )
+)
 
-target_link_libraries(game PRIVATE sfml-graphics)
-target_link_libraries(game PRIVATE sfml-window)
-target_link_libraries(game PRIVATE sfml-system)
+# Укажите путь к SFML
+#set(SFML_DIR "/home/nik/Desktop/sfl/Lib/SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit/SFML-2.6.1/lib/cmake/SFML")
+#find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
+
+target_link_libraries(game PRIVATE sfml-graphics sfml-window sfml-system)
